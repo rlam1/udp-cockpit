@@ -24,7 +24,7 @@ struct alignas(4) xMessage_struct {
 	float data[8];
 };
 
-Poco::Int32 parseIntfromBuffer(Poco::UInt8 buffer[]) {
+Poco::Int32 parseIntfromBuffer(Poco::UInt8 buffer[4]) {
 	Poco::Int32 a;
 
 	a = Poco::Int32(
@@ -75,18 +75,17 @@ int main(int argc, char** argv) {
 
 		myData->myIndex = parseIntfromBuffer(&buffer[5]);
 
-
 		for (int i = 0; i < 8; ++i) {
 			size_t offset = (i * 4) + 9; // i * 4(alignment) + 9(offset of first data[] member
 			myData->data[i] = parseFloatfromBuffer(&buffer[offset]);
 		}
 
-		std::cout << sender.toString() << "- Bytes received: " << n << " - "
+		std::cout << "Bytes received: " << n << " - "
 				<< myData->header << " Index: " << myData->myIndex
 				<< std::endl;
 
 		for (int i = 0; i < 8; i++) {
-			std::cout << static_cast<float>(myData->data[i]) << " ";
+			std::cout << myData->data[i] << " ";
 		}
 
 		std::cout << std::endl;
