@@ -60,7 +60,8 @@ int main(int argc, char** argv) {
 		myData->data[i] = 0.0f;
 	}
 
-	Poco::Net::SocketAddress sa(Poco::Net::IPAddress(), 49003);
+	//Poco::Net::SocketAddress sa(Poco::Net::IPAddress(), 49003);
+	Poco::Net::SocketAddress sa("192.168.1.100", 49003);
 	Poco::Net::DatagramSocket dgs(sa);
 
 	std::array<Poco::UInt8, NETMESSAGE_SIZE> buffer;
