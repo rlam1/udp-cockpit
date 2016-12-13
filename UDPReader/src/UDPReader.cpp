@@ -14,9 +14,13 @@
 #include <algorithm>
 #include <array>
 
+#include "DATA_message.hpp"
+
 using Poco::ByteOrder;
 
-constexpr int NETMESSAGE_SIZE = 1024;
+/* 4793 bytes is maximum with all 133 DATA fields active + 5 bytes of header.
+ Rounded for additional buffer space in case its necessary. */
+constexpr int NETMESSAGE_SIZE = 4800;
 
 struct alignas(4) xMessage_struct {
 	Poco::Int8 header[5];
