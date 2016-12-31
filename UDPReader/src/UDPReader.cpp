@@ -28,36 +28,7 @@ struct alignas(4) xMessage_struct {
 	float data[8];
 };
 
-Poco::Int32 parseIntfromBuffer(Poco::UInt8 buffer[4]) {
-	Poco::Int32 a;
-
-	a = Poco::Int32(
-			(Poco::UInt8) (buffer[0]) << 24 | (Poco::UInt8) (buffer[1]) << 16
-					| (Poco::UInt8) (buffer[2]) << 8
-					| (Poco::UInt8) (buffer[3]));
-
-	Poco::Int32 retval = ByteOrder::fromNetwork(a);
-
-	return retval;
-}
-
-float parseFloatfromBuffer(Poco::UInt8 buffer[4]) {
-	Poco::Int32 temp = 0;
-
-	temp =
-			((buffer[0] << 24) | (buffer[1] << 16) | (buffer[2] << 8)
-					| buffer[3]);
-
-	Poco::Int32 preRetval = ByteOrder::fromNetwork(temp);
-	float retval; /* = reinterpret_cast<float &>(preRetval);*/ //This causes strict aliasing warning!
-	static_assert(sizeof(float) == sizeof(Poco::Int32), "Float is not 4 bytes");
-	std::memcpy(&retval, &preRetval, sizeof(retval));
-
-	return retval;
-}
-
 int main(int argc, char** argv) {
-
 	xMessage_struct *myData = new xMessage_struct;
 
 	for (int i = 0; i < 8; i++) {
@@ -77,11 +48,11 @@ int main(int argc, char** argv) {
 		std::memcpy(myData, buffer.data(), 4); // THE HEADER "DATA" message only
 		myData->header[4] = '\0';
 
-		myData->myIndex = parseIntfromBuffer(&buffer[5]);
+		myData->myIndex = rl::parseIntfromBuffer(&buffer[5]);
 
 		for (int i = 0; i < 8; ++i) {
 			size_t offset = (i * 4) + 9; // i * 4(alignment) + 9(offset of first data[] member
-			myData->data[i] = parseFloatfromBuffer(&buffer[offset]);
+			myData->data[i] = rl::parseFloatfromBuffer(&buffer[offset]);
 		}
 
 		std::cout << "Bytes received: " << n << " - "
