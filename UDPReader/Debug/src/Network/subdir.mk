@@ -4,17 +4,17 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
-../src/UDPReader.cpp 
+../src/Network/DATA_message.cpp 
 
 OBJS += \
-./src/UDPReader.o 
+./src/Network/DATA_message.o 
 
 CPP_DEPS += \
-./src/UDPReader.d 
+./src/Network/DATA_message.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
-src/%.o: ../src/%.cpp
+src/Network/%.o: ../src/Network/%.cpp
 	@echo 'Building file: $<'
 	@echo 'Invoking: GCC C++ Compiler'
 	g++ -std=c++0x -O0 -g3 -Wall -Wextra -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"

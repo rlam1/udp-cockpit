@@ -14,7 +14,7 @@
 #include <algorithm>
 #include <array>
 
-#include "DATA_message.hpp"
+#include "Network/DATA_message.hpp"
 
 using Poco::ByteOrder;
 
@@ -29,10 +29,10 @@ struct alignas(4) xMessage_struct {
 };
 
 int main(int argc, char** argv) {
-	xMessage_struct *myData = new xMessage_struct;
+	xMessage_struct myData;
 
 	for (int i = 0; i < 8; i++) {
-		myData->data[i] = 0.0f;
+		myData.data[i] = 0.0f;
 	}
 
 	Poco::Net::SocketAddress sa(Poco::Net::IPAddress(), 49003);
@@ -45,28 +45,27 @@ int main(int argc, char** argv) {
 		Poco::Net::SocketAddress sender;
 		int n = dgs.receiveFrom(buffer.data(), NETMESSAGE_SIZE, sender);
 
-		std::memcpy(myData, buffer.data(), 4); // THE HEADER "DATA" message only
-		myData->header[4] = '\0';
+		std::memcpy(&myData, buffer.data(), 4); // THE HEADER "DATA" message only
+		myData.header[4] = '\0';
 
-		myData->myIndex = rl::parseIntfromBuffer(&buffer[5]);
+		myData.myIndex = RL::Network::parseIntfromBuffer(&buffer[5]);
 
 		for (int i = 0; i < 8; ++i) {
 			size_t offset = (i * 4) + 9; // i * 4(alignment) + 9(offset of first data[] member
-			myData->data[i] = rl::parseFloatfromBuffer(&buffer[offset]);
+			myData.data[i] = RL::Network::parseFloatfromBuffer(&buffer[offset]);
 		}
 
 		std::cout << "Bytes received: " << n << " - "
-				<< myData->header << " Index: " << myData->myIndex
+				<< myData.header
+				<< " Index: " << myData.myIndex
 				<< std::endl;
 
 		for (int i = 0; i < 8; i++) {
-			std::cout << myData->data[i] << " ";
+			std::cout << myData.data[i] << " ";
 		}
 
 		std::cout << std::endl;
 	}
-
-	delete myData;
 
 	return 0;
 

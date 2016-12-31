@@ -9,7 +9,9 @@
 #include <Poco/Types.h>
 #include <Poco/ByteOrder.h>
 
-namespace rl {
+namespace RL {
+namespace Network {
+
 constexpr Poco::Int8 header[5] = "DATA";
 
 enum class Data_Index
@@ -70,6 +72,7 @@ struct alignas(4) data_struct {
 Poco::Int32 parseIntfromBuffer(Poco::UInt8 buffer[4]);
 float parseFloatfromBuffer(Poco::UInt8 buffer[4]);
 
+} // namespace Network
 } // namespace rl
 
 #endif /* DATA_MESSAGE_HPP_ */

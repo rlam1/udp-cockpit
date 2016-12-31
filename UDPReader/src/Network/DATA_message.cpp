@@ -10,7 +10,7 @@
 
 using Poco::ByteOrder;
 
-Poco::Int32 rl::parseIntfromBuffer(Poco::UInt8 buffer[4]) {
+Poco::Int32 RL::Network::parseIntfromBuffer(Poco::UInt8 buffer[4]) {
 	Poco::Int32 a;
 
 	a = Poco::Int32(
@@ -23,7 +23,7 @@ Poco::Int32 rl::parseIntfromBuffer(Poco::UInt8 buffer[4]) {
 	return retval;
 }
 
-float rl::parseFloatfromBuffer(Poco::UInt8 buffer[4]) {
+float RL::Network::parseFloatfromBuffer(Poco::UInt8 buffer[4]) {
 	static_assert(sizeof(float) == sizeof(Poco::Int32), "Float is not 4 bytes");
 
 	Poco::Int32 temp = 0;
