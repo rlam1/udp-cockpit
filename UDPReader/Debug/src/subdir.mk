@@ -4,12 +4,15 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
+../src/DATA_message.cpp \
 ../src/UDPReader.cpp 
 
 OBJS += \
+./src/DATA_message.o \
 ./src/UDPReader.o 
 
 CPP_DEPS += \
+./src/DATA_message.d \
 ./src/UDPReader.d 
 
 
