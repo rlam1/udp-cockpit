@@ -5,7 +5,8 @@
  *      Author: rlam1
  */
 
-#include "DATA_message.hpp"
+#include "DATA_message.h"
+
 #include <cstring>
 
 using Poco::ByteOrder;
