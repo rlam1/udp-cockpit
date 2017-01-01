@@ -6,13 +6,14 @@
  */
 #ifndef DATA_MESSAGE_HPP_
 #define DATA_MESSAGE_HPP_
+#include <string>
 #include <Poco/Types.h>
 #include <Poco/ByteOrder.h>
 
 namespace RL {
 namespace Network {
 
-constexpr Poco::Int8 header[5] = "DATA";
+const std::string header = "DATA";
 
 enum class Data_Index
 	: Poco::Int32 {
@@ -70,6 +71,7 @@ struct alignas(4) data_struct {
 };
 
 Poco::Int32 parseIntfromBuffer(Poco::UInt8 buffer[4]);
+Data_Index parseIndexfromBuffer(Poco::UInt8 buffer[4]);
 float parseFloatfromBuffer(Poco::UInt8 buffer[4]);
 
 } // namespace Network
