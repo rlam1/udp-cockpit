@@ -39,16 +39,3 @@ float RL::Network::parseFloatfromBuffer(Poco::UInt8 buffer[4]) {
 	return retval;
 }
 
-RL::Network::Data_Index RL::Network::parseIndexfromBuffer(
-        Poco::UInt8 buffer[4]) {
-    Poco::Int32 a;
-
-    a = Poco::Int32(
-            (Poco::UInt8) (buffer[0]) << 24 | (Poco::UInt8) (buffer[1]) << 16
-                    | (Poco::UInt8) (buffer[2]) << 8
-                    | (Poco::UInt8) (buffer[3]));
-
-    Poco::Int32 retval = ByteOrder::fromNetwork(a);
-
-    return static_cast<Data_Index>(retval);
-}

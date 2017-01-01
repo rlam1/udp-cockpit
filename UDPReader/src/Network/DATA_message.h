@@ -71,7 +71,6 @@ struct alignas(4) data_struct {
 };
 
 Poco::Int32 parseIntfromBuffer(Poco::UInt8 buffer[4]);
-Data_Index parseIndexfromBuffer(Poco::UInt8 buffer[4]);
 float parseFloatfromBuffer(Poco::UInt8 buffer[4]);
 
 } // namespace Network
