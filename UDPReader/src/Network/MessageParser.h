@@ -11,7 +11,6 @@
 #include <unordered_map>
 #include <array>
 #include <Poco/Types.h>
-#include <Poco/ByteOrder.h>
 
 #include "DATA_message.h"
 
@@ -38,8 +37,8 @@ public:
      * &buffer       - Place from which data will be read from.
      * bytesReceived - Value returned from receiveFrom (POCO)
      *
-     * This function also modifies status.*/
-    void ParsePacket(const std::unordered_map<Data_Index, float[8]> &map,
+     * This function also modifies internal status.*/
+    void ParsePacket(const std::unordered_map<Poco::Int32, float[8]> &map,
             std::array<Poco::UInt8, NETMESSAGE_SIZE> &buffer,
             int bytesReceived);
 

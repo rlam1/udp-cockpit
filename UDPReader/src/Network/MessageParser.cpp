@@ -27,9 +27,8 @@ int MessageParser::LastPacketParseStatusCode() const {
 }
 
 void MessageParser::ParsePacket(
-        const std::unordered_map<Data_Index, float[8]>& map,
-        std::array<Poco::UInt8, NETMESSAGE_SIZE>& buffer,
-        int bytesReceived) {
+        const std::unordered_map<Poco::Int32, float[8]>& map,
+        std::array<Poco::UInt8, NETMESSAGE_SIZE>& buffer, int bytesReceived) {
 
     int rows_received = (bytesReceived - 5) / 36; //
     if (rows_received < 1) {
@@ -38,10 +37,8 @@ void MessageParser::ParsePacket(
     }
     std::string PacketHeader; // TODO: Compare the packet header to real header.
 
-
     for (int i = 0; i < rows_received; i++) {
-        Data_Index
-    type = parseIndexfromBuffer(&buffer.at((i * 36) + 5));
+        Poco::Int32 type = parseIntfromBuffer(&buffer.at((i * 36) + 5));
     }
 }
 
