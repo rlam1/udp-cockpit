@@ -5,7 +5,9 @@
  *      Author: rlam1
  */
 
+#include <iostream>
 #include <cstring>
+#include <stdexcept>
 #include "MessageParser.h"
 
 namespace RL {
@@ -27,18 +29,43 @@ int MessageParser::LastPacketParseStatusCode() const {
 }
 
 void MessageParser::ParsePacket(
-        const std::unordered_map<Poco::Int32, float[8]>& map,
-        std::array<Poco::UInt8, NETMESSAGE_SIZE>& buffer, int bytesReceived) {
+        std::unordered_map<DataTypesEnum, float[8]>& map,
+        std::array<Poco::UInt8, NETMESSAGE_SIZE>& buffer,
+        int bytesReceived) {
+    constexpr size_t headerSize = sizeof(DataHeader) / sizeof(DataHeader[0]);
+    constexpr size_t structSize = sizeof(data_struct);
 
-    int rows_received = (bytesReceived - 5) / 36; //
+    static_assert(structSize == 36, "Misaligned data structure!");
+    static_assert(headerSize == 5, "Internal header representation is not size 5");
+
+    int rows_received = (bytesReceived - headerSize) / structSize;
     if (rows_received < 1) {
         status = 1;
         return;
     }
-    std::string PacketHeader; // TODO: Compare the packet header to real header.
+
+    char NetworkHeader[5];
+    std::memcpy(NetworkHeader, buffer.data(), 5);
+    std::string SNetworkHeader(NetworkHeader);
+    if (SNetworkHeader.compare(DataHeader) != 0) {
+        status = 1;
+        return;
+    }
 
     for (int i = 0; i < rows_received; i++) {
-        Poco::Int32 type = parseIntfromBuffer(&buffer.at((i * 36) + 5));
+        try {
+            Poco::Int32 typeKey = parseIntfromBuffer(
+                    &buffer.at((i * structSize) + headerSize));
+
+            DataTypesEnum key = Data_Index.at(typeKey);
+
+            for (int j = 0; j < 8; j++) {
+
+            }
+        } catch (std::out_of_range &e) {
+            std::cerr << e.what() << std::endl;
+            continue;
+        }
     }
 }
 

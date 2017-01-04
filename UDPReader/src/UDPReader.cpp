@@ -14,7 +14,7 @@
 #include <algorithm>
 #include <array>
 
-#include "Network/DATA_message.h"
+#include "Network/MessageParser.h"
 
 using Poco::ByteOrder;
 

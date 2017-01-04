@@ -12,7 +12,7 @@
 #include <array>
 #include <Poco/Types.h>
 
-#include "DATA_message.h"
+#include "Internal/DATA_message.h"
 
 namespace RL {
 namespace Network {
@@ -38,7 +38,7 @@ public:
      * bytesReceived - Value returned from receiveFrom (POCO)
      *
      * This function also modifies internal status.*/
-    void ParsePacket(const std::unordered_map<Poco::Int32, float[8]> &map,
+    void ParsePacket(std::unordered_map<DataTypesEnum, float[8]> &map,
             std::array<Poco::UInt8, NETMESSAGE_SIZE> &buffer,
             int bytesReceived);
 
