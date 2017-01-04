@@ -38,7 +38,9 @@ public:
      * bytesReceived - Value returned from receiveFrom (POCO)
      *
      * This function also modifies internal status.*/
-    void ParsePacket(std::unordered_map<DataTypesEnum, float[8]> &map,
+    void ParsePacket(
+            std::unordered_map<DataTypesEnum, std::array<float, 8>,
+                    DataTypesEnumHash> &map,
             std::array<Poco::UInt8, NETMESSAGE_SIZE> &buffer,
             int bytesReceived);
 

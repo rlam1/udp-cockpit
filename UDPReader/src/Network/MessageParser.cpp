@@ -8,6 +8,7 @@
 #include <iostream>
 #include <cstring>
 #include <stdexcept>
+#include <unordered_map>
 #include "MessageParser.h"
 
 namespace RL {
@@ -29,8 +30,9 @@ int MessageParser::LastPacketParseStatusCode() const {
 }
 
 void MessageParser::ParsePacket(
-        std::unordered_map<DataTypesEnum, float[8]>& map,
-        std::array<Poco::UInt8, NETMESSAGE_SIZE>& buffer,
+        std::unordered_map<DataTypesEnum, std::array<float, 8>,
+                DataTypesEnumHash> &map,
+        std::array<Poco::UInt8, NETMESSAGE_SIZE> &buffer,
         int bytesReceived) {
     constexpr size_t headerSize = sizeof(DataHeader) / sizeof(DataHeader[0]);
     constexpr size_t structSize = sizeof(data_struct);
@@ -57,10 +59,15 @@ void MessageParser::ParsePacket(
             Poco::Int32 typeKey = parseIntfromBuffer(
                     &buffer.at((i * structSize) + headerSize));
 
-            DataTypesEnum key = Data_Index.at(typeKey);
+            DataTypesEnum rowKey = Data_Index.at(typeKey);
 
             for (int j = 0; j < 8; j++) {
-
+                auto field = map.find(rowKey);
+                if (field != map.end()) {
+                    field->second.at(j) = parseFloatfromBuffer(
+                                    &buffer.at(
+                                            (i * structSize) + headerSize + 4) + j * sizeof(Poco::Int32));
+                }
             }
         } catch (std::out_of_range &e) {
             std::cerr << e.what() << std::endl;
