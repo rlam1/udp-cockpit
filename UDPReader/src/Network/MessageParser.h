@@ -19,6 +19,12 @@ namespace Network {
 
 constexpr int NETMESSAGE_SIZE = 4800;
 
+/* MessageParser
+ * ----------------------------------------------
+ * Implements a parser for X-Plane's DATA UDP message.
+ * Information enters as a buffer of binary data and
+ * returns as a hash table (unordered_map) for easy lookup
+ * by another part of the program. */
 class MessageParser {
 public:
     MessageParser();
