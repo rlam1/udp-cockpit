@@ -32,8 +32,8 @@ int MessageParser::LastPacketParseStatusCode() const {
 void MessageParser::ParsePacket(
         std::unordered_map<DataTypesEnum, std::array<float, 8>,
                 DataTypesEnumHash> &map,
-        std::array<Poco::UInt8, NETMESSAGE_SIZE> &buffer,
-        int bytesReceived) {
+        const std::array<Poco::UInt8, NETMESSAGE_SIZE> &buffer,
+        const int bytesReceived) {
     constexpr size_t headerSize = sizeof(DataHeader) / sizeof(DataHeader[0]);
     constexpr size_t structSize = sizeof(data_struct);
 

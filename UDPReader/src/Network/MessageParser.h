@@ -49,8 +49,8 @@ public:
     void ParsePacket(
             std::unordered_map<DataTypesEnum, std::array<float, 8>,
                     DataTypesEnumHash> &map,
-            std::array<Poco::UInt8, NETMESSAGE_SIZE> &buffer,
-            int bytesReceived);
+            const std::array<Poco::UInt8, NETMESSAGE_SIZE> &buffer,
+            const int bytesReceived);
 
 private:
     int status;
