@@ -46,13 +46,14 @@ void MessageParser::ParsePacket(
         return;
     }
 
-//    char NetworkHeader[5];
-//    std::memcpy(NetworkHeader, buffer.data(), 5);
-//    std::string SNetworkHeader(NetworkHeader);
-//    if (SNetworkHeader.compare(DataHeader) != 0) {
-//        status = 2;
-//        return;
-//    }
+    char NetworkHeader[5];
+    std::memcpy(NetworkHeader, buffer.data(), 5);
+    NetworkHeader[4] = 0;
+    std::string SNetworkHeader(NetworkHeader);
+    if (SNetworkHeader.compare(DataHeader) != 0) {
+        status = 2;
+        return;
+    }
 
     for (int i = 0; i < rows_received; i++) {
         try {
