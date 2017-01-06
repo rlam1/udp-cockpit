@@ -71,7 +71,9 @@ void MessageParser::ParsePacket(
                 }
             }
         } catch (std::out_of_range &e) {
-            std::cerr << e.what() << std::endl;
+            std::cerr
+                    << "ERROR: RL::Network::MessageParser::ParsePacket() attempted to read from an invalid location! "
+                    << e.what() << std::endl;
             continue;
         }
     }
