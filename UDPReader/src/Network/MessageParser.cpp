@@ -70,7 +70,7 @@ void MessageParser::ParsePacket(
                                             (i * structSize) + headerSize + 4) + j * sizeof(Poco::Int32));
                 }
             }
-        } catch (std::out_of_range &e) {
+        } catch (const std::out_of_range &e) {
             std::cerr
                     << "ERROR: RL::Network::MessageParser::ParsePacket() attempted to read from an invalid location! "
                     << e.what() << std::endl;

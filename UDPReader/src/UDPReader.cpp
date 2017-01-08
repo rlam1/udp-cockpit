@@ -10,6 +10,7 @@
 #include <unordered_map>
 #include <Poco/Net/DatagramSocket.h>
 #include <Poco/Net/SocketAddress.h>
+#include <Poco/Exception.h>
 #include <Poco/ByteOrder.h>
 
 #include "Network/MessageParser.h"
@@ -18,7 +19,15 @@ using Poco::ByteOrder;
 
 int main(int argc, char** argv) {
     Poco::Net::SocketAddress sa(Poco::Net::IPAddress(), 49003);
-    Poco::Net::DatagramSocket dgs(sa);
+    Poco::Net::DatagramSocket dgs;
+    try {
+        dgs.bind(sa, false);
+    } catch (const Poco::Exception &e) {
+        std::cerr
+                << "FATAL ERROR: Is the application already running? Port could not be opened. Details: "
+                << e.message() << std::endl;
+        return EXIT_FAILURE;
+    }
 
     std::array<Poco::UInt8, RL::Network::NETMESSAGE_SIZE> buffer;
     buffer.fill(0);
@@ -54,6 +63,6 @@ int main(int argc, char** argv) {
         }
     }
 
-    return 0;
+    return EXIT_SUCCESS;
 
 }
