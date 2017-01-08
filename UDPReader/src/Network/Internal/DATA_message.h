@@ -11,7 +11,7 @@
 #include <Poco/Types.h>
 #include <Poco/ByteOrder.h>
 
-#include "../DATA_enum.h"
+#include "Network/DATA_enum.h"
 
 namespace RL {
 namespace Network {
