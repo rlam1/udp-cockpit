@@ -5,15 +5,15 @@
 // Copyright   : (C) 2016 Rodolfo Lam. All Rights Reserved.
 // Description : Get one DATA-type package and display its contents.
 //============================================================================
-#include <iostream>
+#include "Network/MessageParser.h"
 #include <array>
+#include <iostream>
 #include <unordered_map>
+
+#include <Poco/ByteOrder.h>
+#include <Poco/Exception.h>
 #include <Poco/Net/DatagramSocket.h>
 #include <Poco/Net/SocketAddress.h>
-#include <Poco/Exception.h>
-#include <Poco/ByteOrder.h>
-
-#include "Network/MessageParser.h"
 
 using Poco::ByteOrder;
 
