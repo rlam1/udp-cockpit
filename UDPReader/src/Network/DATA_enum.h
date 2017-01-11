@@ -8,6 +8,8 @@
 #ifndef NETWORK_DATA_ENUM_H_
 #define NETWORK_DATA_ENUM_H_
 
+#include <Poco/Types.h>
+
 namespace RL {
 namespace Network {
 

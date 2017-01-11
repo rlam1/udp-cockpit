@@ -5,11 +5,12 @@
  *      Author: rlam1
  */
 
+#include "MessageParser.h"
+
 #include <iostream>
 #include <cstring>
 #include <stdexcept>
 #include <unordered_map>
-#include "MessageParser.h"
 
 namespace RL {
 namespace Network {

@@ -6,12 +6,13 @@
  */
 #ifndef DATA_MESSAGE_HPP_
 #define DATA_MESSAGE_HPP_
+
+#include "Network/DATA_enum.h"
+
 #include <string>
 #include <unordered_map>
 #include <Poco/Types.h>
 #include <Poco/ByteOrder.h>
-
-#include "Network/DATA_enum.h"
 
 namespace RL {
 namespace Network {

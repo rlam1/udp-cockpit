@@ -9,8 +9,8 @@
 #define UTIL_MATH_VEC2D_H_
 
 #include <tuple>
-#include <cfloat>
-#include <climits>
+//#include <cfloat>
+//#include <climits>
 
 namespace RL {
 namespace Math {

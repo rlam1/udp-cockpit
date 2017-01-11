@@ -8,11 +8,11 @@
 #ifndef NETWORK_MESSAGEPARSER_H_
 #define NETWORK_MESSAGEPARSER_H_
 
+#include "Internal/DATA_message.h"
+
 #include <unordered_map>
 #include <array>
 #include <Poco/Types.h>
-
-#include "Internal/DATA_message.h"
 
 namespace RL {
 namespace Network {
