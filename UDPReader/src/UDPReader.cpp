@@ -5,9 +5,14 @@
 // Copyright   : (C) 2016 Rodolfo Lam. All Rights Reserved.
 // Description : Get one DATA-type package and display its contents.
 //============================================================================
+
+#include "Graphics/Screen.h"
 #include "Network/MessageParser.h"
+#include "Util/Math/Vec2D.h"
+
 #include <array>
 #include <iostream>
+#include <istream>
 #include <unordered_map>
 
 #include <Poco/ByteOrder.h>
@@ -18,6 +23,10 @@
 using Poco::ByteOrder;
 
 int main(int argc, char** argv) {
+    al_init();
+
+    RL::Graphics::Screen screen;
+
     Poco::Net::SocketAddress sa(Poco::Net::IPAddress(), 49003);
     Poco::Net::DatagramSocket dgs;
     try {
@@ -44,6 +53,8 @@ int main(int argc, char** argv) {
     RL::Network::MessageParser parser;
 
     for (;;) {
+        screen.flipScreen(); // Actually, this might be better placed at the end.
+
         Poco::Net::SocketAddress sender;
         int n = dgs.receiveFrom(buffer.data(), RL::Network::NETMESSAGE_SIZE,
                 sender);

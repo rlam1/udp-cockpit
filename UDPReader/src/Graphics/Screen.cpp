@@ -24,8 +24,9 @@ Screen::Screen() {
     if (al_is_system_installed() != true) {
         throw GraphicsSystemNotAvailableException("Allegro is not initialized");
     }
-
+#ifndef DEBUG
     al_set_new_display_flags(ALLEGRO_FULLSCREEN_WINDOW);
+#endif // DEBUG
     al_set_new_display_option(ALLEGRO_VSYNC, 1, ALLEGRO_SUGGEST);
     display = al_create_display(screenW, screenH);
 
@@ -43,7 +44,7 @@ Screen::Screen() {
     al_flip_display();
 
     al_set_target_bitmap(screen);
-    al_clear_to_color(al_map_rgb(0, 0, 0));
+    al_clear_to_color(al_map_rgb(255, 255, 255));
 }
 
 Screen::~Screen() {
@@ -60,7 +61,11 @@ void Screen::processCommands(RL::Math::Vec2D<float> pos,
 
 void Screen::flipScreen() {
     al_set_target_backbuffer(display);
+#ifdef DEBUG
+    al_clear_to_color(al_map_rgb(255, 0, 255));
+#else
     al_clear_to_color(al_map_rgb(0, 0, 0));
+#endif // DEBUG
     al_draw_scaled_bitmap(screen, 0, 0, screenW, screenH, scaleX, scaleY,
             scaleW, scaleH, 0);
     al_flip_display();
