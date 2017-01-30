@@ -10,6 +10,7 @@ RM := rm -rf
 -include sources.mk
 -include src/Network/Internal/subdir.mk
 -include src/Network/subdir.mk
+-include src/Graphics/subdir.mk
 -include src/subdir.mk
 -include subdir.mk
 -include objects.mk
