@@ -13,6 +13,7 @@
 #include <array>
 #include <iostream>
 #include <istream>
+#include <sstream>
 #include <unordered_map>
 
 #include <Poco/ByteOrder.h>
@@ -53,25 +54,20 @@ int main(int argc, char** argv) {
     RL::Network::MessageParser parser;
 
     for (;;) {
-        screen.flipScreen(); // Actually, this might be better placed at the end.
-
         Poco::Net::SocketAddress sender;
         int n = dgs.receiveFrom(buffer.data(), RL::Network::NETMESSAGE_SIZE,
                 sender);
 
         parser.ParsePacket(parsedData, buffer, n);
-        if (parser.LastPacketParseCorrect()) {
-            for (const auto &record : parsedData) {
-                for (const auto &rows : record.second) {
-                    std::cout << rows << ", ";
-                }
+        bool success = parser.LastPacketParseCorrect();
 
-                std::cout << std::endl;
-            }
-        } else {
-            std::cerr << "ERROR: " << parser.LastPacketParseStatusCode()
-                    << std::endl;
-        }
+        std::stringstream debText;
+        debText << "Last Packet time: " << al_get_time() << " | Status: "
+                << success << " | Size: " << n;
+
+        screen.processCommands(RL::Math::Vec2D<float>(), debText.str());
+
+        screen.flipScreen(); // Actually, this might be better placed at the end.
     }
 
     return EXIT_SUCCESS;

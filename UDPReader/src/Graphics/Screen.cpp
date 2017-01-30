@@ -45,6 +45,8 @@ Screen::Screen() {
 
     al_set_target_bitmap(screen);
     al_clear_to_color(al_map_rgb(255, 255, 255));
+
+    al_flip_display();
 }
 
 Screen::~Screen() {
@@ -68,10 +70,11 @@ void Screen::flipScreen() {
 #endif // DEBUG
     al_draw_scaled_bitmap(screen, 0, 0, screenW, screenH, scaleX, scaleY,
             scaleW, scaleH, 0);
-    al_flip_display();
 
     al_set_target_bitmap(screen);
     al_clear_to_color(al_map_rgb(0, 0, 0));
+
+    al_flip_display();
 }
 
 void Screen::calculateScreenScalingFactor() {
