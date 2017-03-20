@@ -21,7 +21,7 @@ const std::map<DataTypesEnum, std::string> Data_Labels = {
     { DataTypesEnum::times,              "Times" },
     { DataTypesEnum::speeds,             "Knots & MPH" },
     { DataTypesEnum::speeds2,            "Misc. Speed" },
-    { DataTypesEnum::atmosphere_weather,"Gen. Atmosphere" },
+    { DataTypesEnum::atmosphere_weather, "Gen. Atmosphere" },
     { DataTypesEnum::atmosphere_aircraft,"A/C Atmosphere"},
     { DataTypesEnum::drag_surfaces,      "Trim and drag surf."},
     { DataTypesEnum::gear_brakes,        "LDG & brakes"},
