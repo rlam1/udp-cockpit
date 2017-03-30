@@ -23,8 +23,11 @@
 
 using Poco::ByteOrder;
 
+bool waitforEscKey();
+
 int main(int argc, char** argv) {
     al_init();
+    al_install_keyboard();
 
     RL::Graphics::Screen screen;
 
@@ -53,7 +56,9 @@ int main(int argc, char** argv) {
 
     RL::Network::MessageParser parser;
 
-    for (;;) {
+    bool exit = false;
+
+    while (exit != true) {
         Poco::Net::SocketAddress sender;
         int n = dgs.receiveFrom(buffer.data(), RL::Network::NETMESSAGE_SIZE,
                 sender);
@@ -68,8 +73,21 @@ int main(int argc, char** argv) {
         screen.processCommands(RL::Math::Vec2D<float>(), debText.str());
 
         screen.flipScreen(); // Actually, this might be better placed at the end.
+
+        exit = waitforEscKey();
     }
 
     return EXIT_SUCCESS;
 
+}
+
+bool waitforEscKey() {
+    ALLEGRO_KEYBOARD_STATE state;
+    al_get_keyboard_state(&state);
+
+    if(&state == nullptr) {
+        return false;
+    }
+
+    return al_key_down(&state, ALLEGRO_KEY_ESCAPE);
 }
