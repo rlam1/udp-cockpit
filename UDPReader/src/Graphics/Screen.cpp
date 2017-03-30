@@ -24,9 +24,8 @@ Screen::Screen() {
     if (al_is_system_installed() != true) {
         throw GraphicsSystemNotAvailableException("Allegro is not initialized");
     }
-#ifndef DEBUG
+
     al_set_new_display_flags(ALLEGRO_FULLSCREEN_WINDOW);
-#endif // DEBUG
     al_set_new_display_option(ALLEGRO_VSYNC, 1, ALLEGRO_SUGGEST);
     display = al_create_display(screenW, screenH);
 
