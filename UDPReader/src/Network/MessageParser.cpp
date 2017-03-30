@@ -41,6 +41,8 @@ void MessageParser::ParsePacket(
     static_assert(structSize == 36, "Misaligned data structure!");
     static_assert(headerSize == 5, "Internal header representation is not size 5");
 
+    status = 0;
+
     int rows_received = (bytesReceived - headerSize) / structSize;
     if (rows_received < 1) {
         status = 1;
