@@ -16,6 +16,7 @@ Screen::Screen() {
     display = nullptr;
     screen = nullptr;
     systemFont = nullptr;
+    fullscreen = true;
     scaleW = 1.0;
     scaleH = 1.0;
     scaleX = 1.0;
@@ -74,6 +75,13 @@ void Screen::flipScreen() {
     al_clear_to_color(al_map_rgb(0, 0, 0));
 
     al_flip_display();
+}
+
+void Screen::toggleFullscreenMode() {
+    fullscreen = !fullscreen;
+    al_set_display_flag(display, ALLEGRO_FULLSCREEN_WINDOW, fullscreen);
+
+    calculateScreenScalingFactor();
 }
 
 void Screen::calculateScreenScalingFactor() {

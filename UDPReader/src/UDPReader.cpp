@@ -24,12 +24,14 @@
 using Poco::ByteOrder;
 
 bool waitforEscKey();
+void tempFullscreen(RL::Graphics::Screen& scr);
 
 int main(int argc, char** argv) {
     al_init();
     al_install_keyboard();
 
     RL::Graphics::Screen screen;
+    screen.toggleFullscreenMode();
 
     Poco::Net::SocketAddress sa(Poco::Net::IPAddress(), 49003);
     Poco::Net::DatagramSocket dgs;
@@ -81,11 +83,21 @@ int main(int argc, char** argv) {
 
         screen.flipScreen(); // Actually, this might be better placed at the end.
 
+        tempFullscreen(screen);
         exit = waitforEscKey();
     }
 
     return EXIT_SUCCESS;
 
+}
+
+void tempFullscreen(RL::Graphics::Screen& scr) {
+    ALLEGRO_KEYBOARD_STATE state;
+        al_get_keyboard_state(&state);
+
+        if(al_key_down(&state, ALLEGRO_KEY_F)) {
+            scr.toggleFullscreenMode();
+        }
 }
 
 bool waitforEscKey() {

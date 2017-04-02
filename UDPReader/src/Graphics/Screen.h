@@ -54,12 +54,19 @@ public:
      * presented in the display.*/
     void flipScreen();
 
+    /* Restarts the display in the opposite video mode
+     * from the last one selected.
+     * */
+    void toggleFullscreenMode();
+
 private:
     void calculateScreenScalingFactor();
 
     ALLEGRO_DISPLAY *display;
     ALLEGRO_BITMAP *screen;
     ALLEGRO_FONT *systemFont;
+
+    bool fullscreen;
 
     double scaleW;
     double scaleH;
