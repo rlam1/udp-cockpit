@@ -35,17 +35,22 @@ void MessageParser::ParsePacket(
                 DataTypesEnumHash> &map,
         const std::array<Poco::UInt8, NETMESSAGE_SIZE> &buffer,
         const int bytesReceived) {
-    constexpr size_t headerSize = sizeof(DataHeader) / sizeof(DataHeader[0]);
-    constexpr size_t structSize = sizeof(data_struct);
+    constexpr Poco::UIntPtr headerSize = sizeof(DataHeader) / sizeof(DataHeader[0]);
+    constexpr Poco::UIntPtr structSize = sizeof(data_struct);
 
     static_assert(structSize == 36, "Misaligned data structure!");
     static_assert(headerSize == 5, "Internal header representation is not size 5");
 
     status = 0;
 
-    int rows_received = (bytesReceived - headerSize) / structSize;
-    if (rows_received < 1) {
+    if(bytesReceived == 0) {
         status = 1;
+        return;
+    }
+
+    Poco::UIntPtr rows_received = (static_cast<Poco::UIntPtr>(bytesReceived) - headerSize) / structSize;
+    if (rows_received >= 134) {
+        status = 2;
         return;
     }
 
@@ -54,18 +59,18 @@ void MessageParser::ParsePacket(
     NetworkHeader[4] = 0;
     std::string SNetworkHeader(NetworkHeader);
     if (SNetworkHeader.compare(DataHeader) != 0) {
-        status = 2;
+        status = 3;
         return;
     }
 
-    for (int i = 0; i < rows_received; i++) {
+    for (Poco::UIntPtr i = 0; i < rows_received; i++) {
         try {
             Poco::Int32 typeKey = parseIntfromBuffer(
                     &buffer.at((i * structSize) + headerSize));
 
             DataTypesEnum rowKey = Data_Index.at(typeKey);
 
-            for (int j = 0; j < 8; j++) {
+            for (Poco::UIntPtr j = 0; j < 8; j++) {
                 auto field = map.find(rowKey);
                 if (field != map.end()) {
                     field->second.at(j) = parseFloatfromBuffer(
