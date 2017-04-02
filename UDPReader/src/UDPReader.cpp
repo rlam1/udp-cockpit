@@ -11,6 +11,7 @@
 #include "Util/Math/Vec2D.h"
 
 #include <array>
+#include <iomanip>
 #include <iostream>
 #include <istream>
 #include <sstream>
@@ -63,21 +64,22 @@ int main(int argc, char** argv) {
 
     while (exit != true) {
         Poco::Net::SocketAddress sender;
-        int n;
+        int n = 0;
 
         try {
             n = dgs.receiveFrom(buffer.data(), RL::Network::NETMESSAGE_SIZE,
                     sender);
         } catch (Poco::TimeoutException &e) {
-            std::cerr << "[" << al_get_time() << "] " << "Timeout, no data received" << std::endl;
+            // Just continue trying
         }
 
         parser.ParsePacket(parsedData, buffer, n);
         bool success = parser.LastPacketParseCorrect();
 
         std::stringstream debText;
-        debText << "Last Packet time: " << al_get_time() << " | Status: "
-                << success << " | Size: " << n;
+        debText << "Last Packet time: " << std::setprecision(4) << std::setw(6)
+                << al_get_time() << " | Status: "<< success << " | Size: "
+                << n;
 
         screen.processCommands(RL::Math::Vec2D<float>(), debText.str());
 
