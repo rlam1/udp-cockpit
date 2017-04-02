@@ -33,6 +33,7 @@ int main(int argc, char** argv) {
 
     Poco::Net::SocketAddress sa(Poco::Net::IPAddress(), 49003);
     Poco::Net::DatagramSocket dgs;
+    dgs.setBlocking(false);
     try {
         dgs.bind(sa, false);
     } catch (const Poco::Exception &e) {
@@ -60,8 +61,14 @@ int main(int argc, char** argv) {
 
     while (exit != true) {
         Poco::Net::SocketAddress sender;
-        int n = dgs.receiveFrom(buffer.data(), RL::Network::NETMESSAGE_SIZE,
-                sender);
+        int n;
+
+        try {
+            n = dgs.receiveFrom(buffer.data(), RL::Network::NETMESSAGE_SIZE,
+                    sender);
+        } catch (Poco::TimeoutException &e) {
+            std::cerr << "[" << al_get_time() << "] " << "Timeout, no data received" << std::endl;
+        }
 
         parser.ParsePacket(parsedData, buffer, n);
         bool success = parser.LastPacketParseCorrect();
