@@ -104,9 +104,5 @@ bool waitforEscKey() {
     ALLEGRO_KEYBOARD_STATE state;
     al_get_keyboard_state(&state);
 
-    if(&state == nullptr) {
-        return false;
-    }
-
     return al_key_down(&state, ALLEGRO_KEY_ESCAPE);
 }
