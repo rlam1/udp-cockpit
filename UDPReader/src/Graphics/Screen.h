@@ -44,7 +44,7 @@ public:
      * object that contains information on how to
      * draw itself. Hence the name of the function.
      * Each object will be a drawing command.*/
-    void processCommands(RL::Math::Vec2D<float> pos, const std::string &value);
+    void processCommands(RL::Math::Vec2D<float> pos, const std::string &value) const;
 
     /* Draws whatever is currently present in the
      * virtual screen to the actual display.
@@ -52,7 +52,7 @@ public:
      * Clears the display buffer and the virtual
      * screen (in that order) after the image is
      * presented in the display.*/
-    void flipScreen();
+    void flipScreen() const;
 
     /* Restarts the display in the opposite video mode
      * from the last one selected.

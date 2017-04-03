@@ -56,12 +56,12 @@ Screen::~Screen() {
 }
 
 void Screen::processCommands(RL::Math::Vec2D<float> pos,
-        const std::string& value) {
+        const std::string& value) const {
     al_draw_text(systemFont, al_map_rgb(255, 255, 255), pos.x, pos.y, 0,
             value.c_str());
 }
 
-void Screen::flipScreen() {
+void Screen::flipScreen() const {
     al_set_target_backbuffer(display);
 #ifdef DEBUG
     al_clear_to_color(al_map_rgb(255, 0, 255));
