@@ -4,13 +4,16 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
-../src/Network/MessageParser.cpp 
+../src/Network/MessageParser.cpp \
+../src/Network/NetworkListener.cpp 
 
 OBJS += \
-./src/Network/MessageParser.o 
+./src/Network/MessageParser.o \
+./src/Network/NetworkListener.o 
 
 CPP_DEPS += \
-./src/Network/MessageParser.d 
+./src/Network/MessageParser.d \
+./src/Network/NetworkListener.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
