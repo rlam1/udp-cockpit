@@ -11,6 +11,7 @@
 #define NETWORK_NETWORKLISTENER_H_
 
 #include "Network/MessageParser.h"
+#include "System/ParsedDataType.h"
 
 #include <array>
 #include <unordered_map>
