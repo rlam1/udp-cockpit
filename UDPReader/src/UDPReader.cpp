@@ -43,7 +43,7 @@ int main(int argc, char** argv) {
         std::cerr
                 << "FATAL ERROR: Is the application already running? Port could not be opened. Details: "
                 << e.message() << std::endl;
-        return EXIT_FAILURE;
+        return -1;
     }
 
     std::array<Poco::UInt8, RL::Network::NETMESSAGE_SIZE> buffer;

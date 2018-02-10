@@ -11,6 +11,7 @@
 #include "Util/Math/Vec2D.h"
 
 #include <string>
+#include <algorithm>
 
 #include <Poco/Exception.h>
 

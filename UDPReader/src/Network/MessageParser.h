@@ -8,7 +8,7 @@
 #ifndef NETWORK_MESSAGEPARSER_H_
 #define NETWORK_MESSAGEPARSER_H_
 
-#include "Internal/DATA_message.h"
+#include "Internal\DATA_message.h"
 
 #include <array>
 #include <unordered_map>
