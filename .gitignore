@@ -56,7 +56,7 @@ local.properties
 .recommenders
 
 # Eclipse Core
-.project
+#.project
 
 # External tool builders
 .externalToolBuilders/
@@ -71,7 +71,7 @@ RemoteSystemsTempFiles/
 *.pydevproject
 
 # CDT-specific (C/C++ Development Tooling)
-.cproject
+#.cproject
 
 # JDT-specific (Eclipse Java Development Tools)
 .classpath
@@ -96,6 +96,25 @@ RemoteSystemsTempFiles/
 
 # Code Recommenders
 .recommenders/
+
+#===================
+#   Visual Studio
+#===================
+# Runtime .pdb file
+UDPReader/WinDeb/vc140.pdb
+*.pdb
+
+# Incremental linkers
+*.ilk
+
+# Internal directory
+UDPReader/WinRel/.vs/
+UDPReader/WinDeb/.vs/
+
+#===================
+#   Allegro Stuff
+#===================
+allegro.log
 
 #===================
 #       Linux
