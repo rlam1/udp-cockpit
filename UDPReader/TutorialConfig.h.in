@@ -1,0 +1,6 @@
+// the configured options and settings for Tutorial
+#define Tutorial_VERSION_MAJOR @Tutorial_VERSION_MAJOR@
+#define Tutorial_VERSION_MINOR @Tutorial_VERSION_MINOR@
+
+// Used to inform compiler of the option to use the inernal MathFunctions library
+#cmakedefine USE_MYMATH
