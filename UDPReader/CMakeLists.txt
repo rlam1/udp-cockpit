@@ -10,7 +10,7 @@ if(PKG_CONFIG_FOUND)
 endif()
 
 # Extend the find_package search path
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/Cmake/Modules/")
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/modules/")
 
 # configure a header file to pass some of the CMake settings
 # to the source code
