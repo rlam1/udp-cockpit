@@ -5,9 +5,9 @@ set (Tutorial_VERSION_MAJOR 1)
 set (Tutorial_VERSION_MINOR 0)
 
 find_package(PkgConfig REQUIRED)
-if(PKG_CONFIG_FOUND)
-	message([STATUS] "PkgConfig was found at ${PKG_CONFIG_EXECUTABLE}")
-endif()
+# if(PKG_CONFIG_FOUND)
+	# message([STATUS] "PkgConfig was found at ${PKG_CONFIG_EXECUTABLE}")
+# endif()
 
 # Extend the find_package search path
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/modules/")
@@ -36,13 +36,13 @@ include_directories("${PROJECT_BINARY_DIR}")
 #endif (USE_MYMATH)
 
 #Find Allegro
-find_package(ALLEGRO)
+find_package(Allegro)
 
-if(ALLEGRO_FOUND)
-	include_directories(${ALLEGRO_INCLUDE_DIRS})
-	list(APPEND ${EXTRA_LIBS} ${ALLEGRO_LIBRARY})
+if(Allegro_FOUND)
+	include_directories(${Allegro_INCLUDE_DIRS})
+	list(APPEND ${EXTRA_LIBS} ${Allegro_LIBRARY})
 endif()
 	
 # add the executable
 add_executable (Tutorial reader.cpp)
-target_link_libraries (Tutorial ${EXTRA_LIBS} PkgConfig::PC_ALLEGRO)
+target_link_libraries (Tutorial ${EXTRA_LIBS} PkgConfig::PC_Allegro)
