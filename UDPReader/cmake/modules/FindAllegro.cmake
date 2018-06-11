@@ -1,5 +1,6 @@
 # FindAllegro
 # -----------
+# Copyright (c) 2018 Rodolfo Lam. All Rights Reserved.
 #
 # Finds the Allegro 5 Library... or at least tries.
 #
