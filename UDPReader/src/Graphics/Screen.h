@@ -1,8 +1,7 @@
 /*
- * Screen.h
- *
- *  Created on: Jan 7, 2017
- *      Author: rlam1
+ * Copyright (c) 2018 Rodolfo Lam. All rights reserved.
+ * 
+ * SPDX-License-Identifier: BSD-3-Clause
  */
 
 #ifndef GRAPHICS_SCREEN_H_

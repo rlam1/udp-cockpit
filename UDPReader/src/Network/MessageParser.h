@@ -1,8 +1,7 @@
 /*
- * MessageParser.h
- *
- *  Created on: Dec 31, 2016
- *      Author: rlam1
+ * Copyright (c) 2018 Rodolfo Lam. All rights reserved.
+ * 
+ * SPDX-License-Identifier: BSD-3-Clause
  */
 
 #ifndef NETWORK_MESSAGEPARSER_H_

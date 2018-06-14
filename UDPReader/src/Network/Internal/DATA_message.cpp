@@ -1,8 +1,7 @@
 /*
- * DATA_message.cpp
- *
- *  Created on: Dec 30, 2016
- *      Author: rlam1
+ * Copyright (c) 2018 Rodolfo Lam. All rights reserved.
+ * 
+ * SPDX-License-Identifier: BSD-3-Clause
  */
 
 #include "DATA_message.h"

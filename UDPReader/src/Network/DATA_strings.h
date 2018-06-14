@@ -1,8 +1,7 @@
 /*
- * DATA_strings.h
- *
- *  Created on: Jan 29, 2017
- *      Author: rlam1
+ * Copyright (c) 2018 Rodolfo Lam. All rights reserved.
+ * 
+ * SPDX-License-Identifier: BSD-3-Clause
  */
 
 #ifndef NETWORK_DATA_STRINGS_H_

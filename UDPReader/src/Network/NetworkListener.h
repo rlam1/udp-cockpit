@@ -1,8 +1,7 @@
 /*
- * NetworkListener.h
- *
- *  Created on: Apr 3, 2017
- *  Copyright (C) 2017 rlam1. See LICENSE file for more information
+ * Copyright (c) 2018 Rodolfo Lam. All rights reserved.
+ * 
+ * SPDX-License-Identifier: BSD-3-Clause
  *
  *  Description: Handles incoming network traffic
  */

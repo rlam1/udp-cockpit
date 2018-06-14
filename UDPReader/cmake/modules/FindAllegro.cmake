@@ -1,6 +1,7 @@
-# FindAllegro
-# -----------
-# Copyright (c) 2018 Rodolfo Lam. All Rights Reserved.
+# FindAllegro.cmake
+# -----------------
+# Copyright (c) 2018 Rodolfo Lam. All rights reserved.
+# SPDX-License-Identifier: BSD-3-Clause
 #
 # Finds the Allegro 5 Library... or at least tries.
 #

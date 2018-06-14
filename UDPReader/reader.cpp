@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2018 Rodolfo Lam. All rights reserved.
+ * 
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
 // A simple program that computes the square root of a number
 #include <stdio.h>
 #include <stdlib.h>

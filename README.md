@@ -14,3 +14,6 @@ Currently we are using:
 2. **POCO C++** - Class libraries for building network applications.
 
 Both need to be correctly installed and configured. On a Linux system you will then run 'make' on either the *Debug* or *Release* directory and the binary (called by default *Viewer*) should be compiled.
+
+Copyright (c) 2018 Rodolfo Lam. All rights reserved.
+SPDX-License-Identifier: BSD-3-Clause

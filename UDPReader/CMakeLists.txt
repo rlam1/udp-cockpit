@@ -1,3 +1,6 @@
+# Copyright (c) 2018 Rodolfo Lam. All rights reserved.
+# SPDX-License-Identifier: BSD-3-Clause
+
 cmake_minimum_required (VERSION 3.0)
 project (UDPReader)
 # The version number

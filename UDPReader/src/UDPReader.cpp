@@ -1,10 +1,8 @@
-//============================================================================
-// Name        : UDPReader.cpp
-// Author      : Rodolfo Lam
-// Version     :
-// Copyright   : (C) 2016 Rodolfo Lam. All Rights Reserved.
-// Description : Get one DATA-type package and display its contents.
-//============================================================================
+/*
+ * Copyright (c) 2018 Rodolfo Lam. All rights reserved.
+ * 
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
 
 #include "Graphics/Screen.h"
 #include "Network/MessageParser.h"
