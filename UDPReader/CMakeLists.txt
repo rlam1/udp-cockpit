@@ -36,13 +36,14 @@ include_directories("${PROJECT_BINARY_DIR}")
 #endif (USE_MYMATH)
 
 #Find Allegro
-find_package(Allegro)
-
-if(Allegro_FOUND)
-	include_directories(${Allegro_INCLUDE_DIRS})
-	list(APPEND ${EXTRA_LIBS} ${Allegro_LIBRARY})
-endif()
+find_package(Allegro REQUIRED COMPONENTS image primitives font ttf color)
 	
 # add the executable
 add_executable (Tutorial reader.cpp)
-target_link_libraries (Tutorial ${EXTRA_LIBS} PkgConfig::PC_Allegro)
+target_link_libraries (Tutorial Allegro::Allegro
+	Allegro::image
+	Allegro::primitives
+	Allegro::font
+	Allegro::ttf
+	Allegro::color
+)
